@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background Form</title>
+    <link rel="stylesheet" href="Form 2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Create Account</h1>
+            <form name="submit-to-google-sheet">
+                <input type="text" name="Name" placeholder="Name"><br>
+                <input type="Email" name="Email" placeholder="Email"><br>
+                <input type="Password" name="Password" placeholder="Password"><br>
+                <input type="Password" name="Confirm Password" placeholder="Confirm Password"><br>
+                <input type="submit" class="button"><br>
+            </form>
+        </div>
+    </div>
+    
+      
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx8y8zwpacO0sHTd0-skB0hjAwU0DZ85n23vR_YcSwyuR2QPZ7EyHuay4sS3TjcN4bv/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
